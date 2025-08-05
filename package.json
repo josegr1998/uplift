@@ -1,0 +1,12 @@
+{
+    "name": "monorepo",
+    "private": true,
+    "scripts": {
+  "dev:web": "yarn workspace web dev",
+  "dev:mobile": "yarn workspace mobile start"
+},
+    "workspaces": [
+      "apps/*",
+      "packages/*"
+    ]
+  }

@@ -1,0 +1,26 @@
+{
+  "name": "@uplift/ui",
+  "version": "1.0.0",
+  "main": "web/index.ts",
+  "types": "web/index.ts",
+  "exports": {
+    ".": "./web/index.ts",
+    "./web": "./web/index.ts",
+    "./mobile": "./mobile/index.ts"
+  },
+  "dependencies": {
+    "@uplift/network": "1.0.0"
+  },
+  "peerDependencies": {
+    "next": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-native": "^0.72.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "@types/react-native": "^0.72.0",
+    "next": "^14.0.0",
+    "typescript": "^5.0.0"
+  }
+}

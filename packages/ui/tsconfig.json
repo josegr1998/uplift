@@ -1,0 +1,19 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+      "jsx": "preserve",
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "allowSyntheticDefaultImports": true,
+      "target": "esnext",
+      "module": "esnext",
+      "isolatedModules": true,
+      "baseUrl": ".",
+      "paths": {
+        "@uplift/network": ["../network"],
+        "@uplift/types": ["../types"]
+      }
+    },
+    "include": ["."],
+    "exclude": ["node_modules"]
+  }

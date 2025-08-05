@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "jsx": "react-native",
+      "strict": true,
+      "baseUrl": ".",
+      "paths": {
+        "@types/*": ["packages/types/*"],
+        "@utils/*": ["packages/utils/*"],
+        "@ui/*": ["packages/ui/*"],
+        "@uplift/network": ["packages/network"],
+        "@uplift/types": ["packages/types"]
+      }
+    }
+  }
