@@ -1,18 +1,13 @@
-export type Distribution = {
+import { Beneficiary } from "@uplift/types";
+
+export type DistributionDetails = {
   id: string;
   region: string;
   date: string;
   status: string;
+  statusColor: string;
   beneficiaries: number;
   aidType: string;
   deliveryChannel: string;
-};
-
-export type Beneficiary = {
-  id: string;
-  name: string;
-};
-
-export type DistributionDetails = Distribution & {
   beneficiaryList: Beneficiary[];
 };

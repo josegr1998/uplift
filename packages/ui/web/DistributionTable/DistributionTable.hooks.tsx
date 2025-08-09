@@ -1,0 +1,125 @@
+"use client";
+
+import { useQuery } from "@tanstack/react-query";
+import {
+  CellContext,
+  createColumnHelper,
+  getCoreRowModel,
+  getFilteredRowModel,
+  getPaginationRowModel,
+  useReactTable,
+} from "@tanstack/react-table";
+import { getDistributions } from "@uplift/network";
+import { Distribution } from "@uplift/types";
+import { useMemo, useState } from "react";
+import { isValidFilter, ValidFilter } from "./DistributionTable.utils";
+import { getStatusColor } from "../utils/getStatusColor";
+import { DEFAULT_PAGE_SIZE } from "./DistributionTable.consts";
+
+export const useDistributions = () => {
+  return useQuery({
+    queryKey: ["distributions"],
+    queryFn: getDistributions,
+  });
+};
+
+export const useTable = ({
+  filteredData,
+}: {
+  filteredData: Distribution[];
+}) => {
+  const columnHelper = createColumnHelper<Distribution>();
+
+  // Define columns
+  const columns = useMemo(
+    () => [
+      columnHelper.accessor("region", {
+        header: "Region",
+        cell: (regionCell: CellContext<Distribution, string>) =>
+          regionCell.getValue(),
+      }),
+      columnHelper.accessor("date", {
+        header: "Date",
+        cell: (dateCell: CellContext<Distribution, string>) => {
+          const date = new Date(dateCell.getValue());
+          return date.toLocaleDateString();
+        },
+      }),
+      columnHelper.accessor("status", {
+        header: "Status",
+        cell: (statusCell: CellContext<Distribution, string>) => {
+          const status = statusCell.getValue();
+          const statusColor = getStatusColor(status);
+          return (
+            <span
+              className={`px-2 py-1 rounded-full text-xs font-medium ${statusColor}`}
+            >
+              {status}
+            </span>
+          );
+        },
+      }),
+      columnHelper.accessor("beneficiaries", {
+        header: "Beneficiaries",
+        cell: (beneficiariesCell: CellContext<Distribution, number>) =>
+          beneficiariesCell.getValue().toLocaleString(),
+      }),
+      columnHelper.display({
+        id: "actions",
+        header: "Action",
+        cell: (actionsCell: CellContext<Distribution, unknown>) => {
+          const distributionId = actionsCell.row.original.id;
+          return (
+            <a
+              href={`/distribution/${distributionId}`}
+              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors inline-block"
+            >
+              View Details
+            </a>
+          );
+        },
+      }),
+    ],
+    []
+  );
+
+  const table = useReactTable({
+    data: filteredData,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
+    initialState: {
+      pagination: {
+        pageSize: DEFAULT_PAGE_SIZE,
+      },
+    },
+  });
+
+  return {
+    table,
+  };
+};
+
+export const useFilters = () => {
+  const [selectedFilters, setSelectedFilters] = useState<
+    Record<ValidFilter, string>
+  >({
+    region: "",
+    status: "",
+  });
+
+  const handleFilterChange = (filterType: string, value: string) => {
+    if (!isValidFilter(filterType)) return;
+
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [filterType]: value,
+    }));
+  };
+
+  return {
+    selectedFilters,
+    handleFilterChange,
+  };
+};

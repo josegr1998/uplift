@@ -1,3 +1,6 @@
 // Export all components from the web directory
 export { Button } from "./Button/Button";
-export { DistributionList } from "./DistributionList/DistributionList";
+export { DistributionTable } from "./DistributionTable";
+export { DistributionDetails } from "./DistributionDetails";
+export { DistributionCharts } from "./DistributionCharts";
+export { Provider } from "./providers/QueryClientProvider";
