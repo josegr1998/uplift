@@ -1,22 +1,15 @@
-import React, { useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  StyleSheet,
-  ActivityIndicator,
-  Alert,
-} from "react-native";
+import { View, Text, FlatList, TouchableOpacity, Alert } from "react-native";
 import { Distribution } from "@uplift/types";
 import { ValidFilter } from "@uplift/ui/utils";
 import { Filter } from "./components/Filter";
 import { createStyles } from "./DistributionTablePresentation.styles";
 import { useTheme } from "../../context/ThemeContext";
-import { getStatusColor } from "../../utils/getStatusColor";
 import { Pagination } from "./components/Pagination/Pagination";
+import { DistributionCard } from "./components/DistributionCard/DistributionCard";
+import { ErrorDisplay } from "../ErrorDisplay/ErrorDisplay";
+import { Loading } from "../Loading/Loading";
 
-export interface DistributionTablePresentationProps {
+type Props = {
   distributions: Distribution[];
   isLoading: boolean;
   error: Error | null;
@@ -31,7 +24,7 @@ export interface DistributionTablePresentationProps {
   totalItems: number;
   areFiltersVisible: boolean;
   handleFilterToggle: () => void;
-}
+};
 
 export const DistributionTablePresentation = ({
   distributions,
@@ -48,35 +41,23 @@ export const DistributionTablePresentation = ({
   totalItems,
   areFiltersVisible,
   handleFilterToggle,
-}: DistributionTablePresentationProps) => {
+}: Props) => {
   const theme = useTheme();
   const styles = createStyles(theme);
 
   if (isLoading) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={theme.colors.primary} />
-        <Text style={styles.loadingText}>Loading distributions...</Text>
-      </View>
-    );
+    return <Loading message="Loading distributions..." title="Loading" />;
   }
 
   if (error) {
     return (
-      <View style={styles.errorContainer}>
-        <Text style={styles.errorText}>
-          Error loading distributions: {error.message}
-        </Text>
-        <TouchableOpacity
-          style={styles.retryButton}
-          onPress={() => {
-            // This would trigger a retry in the container
-            Alert.alert("Retry", "Please refresh the screen to retry");
-          }}
-        >
-          <Text style={styles.retryButtonText}>Retry</Text>
-        </TouchableOpacity>
-      </View>
+      <ErrorDisplay
+        message={error.message}
+        onRetry={() => {
+          // This would trigger a retry in the container
+          Alert.alert("Retry", "Please refresh the screen to retry");
+        }}
+      />
     );
   }
 
@@ -136,39 +117,11 @@ export const DistributionTablePresentation = ({
         data={distributions}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TouchableOpacity
-            style={styles.distributionItem}
-            onPress={() => onDistributionSelect(item)}
-          >
-            <View style={styles.itemHeader}>
-              <Text style={styles.regionText}>{item.region}</Text>
-              <View style={[styles.statusBadge]}>
-                <Text
-                  style={[
-                    styles.statusText,
-                    getStatusColor(item.status, theme),
-                  ]}
-                >
-                  {item.status}
-                </Text>
-              </View>
-            </View>
-
-            <View style={styles.itemDetails}>
-              <Text style={styles.dateText}>
-                <Text style={styles.labelText}>Date: </Text>
-                {new Date(item.date).toLocaleDateString()}
-              </Text>
-              <Text style={styles.beneficiariesText}>
-                <Text style={styles.labelText}>Beneficiaries: </Text>
-                {item.beneficiaries.toLocaleString()}
-              </Text>
-              <Text style={styles.aidTypeText}>
-                <Text style={styles.labelText}>Aid Type: </Text>
-                {item.aidType}
-              </Text>
-            </View>
-          </TouchableOpacity>
+          <DistributionCard
+            distribution={item}
+            onDistributionSelect={onDistributionSelect}
+            theme={theme}
+          />
         )}
         style={styles.list}
       />
