@@ -75,7 +75,7 @@ export const DistributionTablePresentation = ({
       </div>
       {hasResults ? (
         <>
-          <div className="overflow-x-auto">
+          <div className="w-[90vw] mx-auto md:w-full overflow-x-auto">
             <Table table={table} />
           </div>
 

@@ -206,10 +206,7 @@ type ThemeProviderProps = {
   children: ReactNode;
 };
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  theme,
-  children,
-}) => {
+export const ThemeProvider = ({ theme, children }: ThemeProviderProps) => {
   return (
     <ThemeContext.Provider value={{ theme }}>{children}</ThemeContext.Provider>
   );
