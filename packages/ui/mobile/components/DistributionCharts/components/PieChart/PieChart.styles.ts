@@ -27,13 +27,16 @@ export const createStyles = (theme: Theme) =>
       height: 220,
     },
     pieDataContainer: {
-      gap: 12,
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
       marginTop: 16,
     },
     pieDataItem: {
       flexDirection: "row",
       alignItems: "center",
       paddingVertical: 8,
+      width: "48%", // Leave some space between columns
     },
     colorIndicator: {
       width: 16,
