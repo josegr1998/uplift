@@ -1,6 +1,6 @@
 import React from "react";
-import { DistributionDetailsContainer } from "@uplift/ui/mobile";
+import { DistributionDetails } from "@uplift/ui/mobile";
 
 export default function DistributionDetailsScreen() {
-  return <DistributionDetailsContainer />;
+  return <DistributionDetails />;
 }

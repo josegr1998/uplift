@@ -12,7 +12,8 @@ import { Distribution } from "@uplift/types";
 import { ValidFilter } from "@uplift/ui/utils";
 import { Filter } from "./components/Filter";
 import { Pagination } from "./components/Pagination";
-import { styles, colors } from "./DistributionTablePresentation.styles";
+import { createStyles } from "./DistributionTablePresentation.styles";
+import { useTheme } from "../context/ThemeContext";
 import { getStatusColor } from "../utils/getStatusColor";
 
 export interface DistributionTablePresentationProps {
@@ -48,10 +49,13 @@ export const DistributionTablePresentation = ({
   areFiltersVisible,
   handleFilterToggle,
 }: DistributionTablePresentationProps) => {
+  const theme = useTheme();
+  const styles = createStyles(theme);
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
         <Text style={styles.loadingText}>Loading distributions...</Text>
       </View>
     );
@@ -138,7 +142,9 @@ export const DistributionTablePresentation = ({
           >
             <View style={styles.itemHeader}>
               <Text style={styles.regionText}>{item.region}</Text>
-              <View style={[styles.statusBadge, getStatusColor(item.status)]}>
+              <View
+                style={[styles.statusBadge, getStatusColor(item.status, theme)]}
+              >
                 <Text style={styles.statusText}>{item.status}</Text>
               </View>
             </View>

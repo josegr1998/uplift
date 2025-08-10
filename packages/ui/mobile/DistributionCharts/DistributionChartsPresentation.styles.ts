@@ -1,231 +1,163 @@
 import { StyleSheet } from "react-native";
+import { Theme } from "../context/ThemeContext";
 
-// Common design tokens
-export const colors = {
-  primary: "#2196F3",
-  secondary: "#666",
-  success: "#388E3C",
-  warning: "#F57C00",
-  info: "#1976D2",
-  error: "#D32F2F",
-  background: "#FFFFFF",
-  surface: "#F5F5F5",
-  border: "#E0E0E0",
-  textPrimary: "#000",
-  textSecondary: "#666",
-  textLight: "#999",
-  // Chart colors
+export const createStyles = (theme: Theme) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      backgroundColor: theme.colors.surface,
+      padding: 16,
+      paddingBottom: 100,
+    },
+    title: {
+      fontSize: 28,
+      fontWeight: "bold" as const,
+      color: theme.colors.textPrimary,
+      marginBottom: 24,
+      textAlign: "center",
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 16,
+    },
+    loadingText: {
+      marginTop: 8,
+      fontSize: 16,
+      color: theme.colors.textSecondary,
+    },
+    errorContainer: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      padding: 16,
+    },
+    errorText: {
+      fontSize: 16,
+      color: theme.colors.error,
+      textAlign: "center",
+      marginBottom: 16,
+    },
+    retryButton: {
+      backgroundColor: theme.colors.primary,
+      paddingHorizontal: 24,
+      paddingVertical: 12,
+      borderRadius: 8,
+    },
+    retryButtonText: {
+      fontSize: 16,
+      color: theme.colors.background,
+      fontWeight: "600",
+    },
+    sectionTitle: {
+      fontSize: 20,
+      fontWeight: "600" as const,
+      color: theme.colors.textPrimary,
+      marginBottom: 16,
+    },
+    statsContainer: {
+      backgroundColor: theme.colors.background,
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 16,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3.84,
+      elevation: 5,
+    },
+    statsGrid: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+    },
+    statCard: {
+      width: "48%",
+      backgroundColor: theme.colors.surface,
+      borderRadius: 8,
+      padding: 12,
+      marginBottom: 8,
+      alignItems: "center",
+    },
+    statValue: {
+      fontSize: 24,
+      fontWeight: "bold" as const,
+      color: theme.colors.primary,
+      marginBottom: 4,
+    },
+    statLabel: {
+      fontSize: 12,
+      color: theme.colors.textSecondary,
+      textAlign: "center",
+    },
+    chartContainer: {
+      backgroundColor: theme.colors.background,
+      borderRadius: 12,
+      padding: 16,
+      marginBottom: 16,
+      shadowColor: "#000",
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3.84,
+      elevation: 5,
+    },
+    pieChartWrapper: {
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      height: 220,
+    },
+    pieDataContainer: {
+      gap: 12,
+      marginTop: 16,
+    },
+    pieDataItem: {
+      flexDirection: "row",
+      alignItems: "center",
+      paddingVertical: 8,
+    },
+    colorIndicator: {
+      width: 16,
+      height: 16,
+      borderRadius: 8,
+      marginRight: 12,
+    },
+    pieDataText: {
+      flex: 1,
+    },
+    pieDataName: {
+      fontSize: 16,
+      fontWeight: "500" as const,
+      color: theme.colors.textPrimary,
+    },
+    pieDataValue: {
+      fontSize: 14,
+      color: theme.colors.textSecondary,
+      marginTop: 4,
+    },
+    lineChartWrapper: {
+      alignItems: "center",
+      justifyContent: "center",
+      width: "100%",
+      height: 220,
+    },
+    lineChart: {
+      paddingRight: 8,
+    },
+    lineChartScrollContainer: {
+      alignItems: "center",
+    },
+    bottomSpacer: {
+      height: 50,
+    },
+  });
+
+// Chart-specific colors that don't need to be theme-dependent
+export const chartColors = {
   chartBlue: "#0088FE",
   chartGreen: "#00C49F",
   chartYellow: "#FFBB28",
   chartOrange: "#FF8042",
   chartPurple: "#8884D8",
 };
-
-export const spacing = {
-  xs: 4,
-  sm: 8,
-  md: 12,
-  lg: 16,
-  xl: 24,
-  xxl: 32,
-};
-
-export const borderRadius = {
-  sm: 4,
-  md: 8,
-  lg: 12,
-  xl: 16,
-};
-
-export const shadows = {
-  small: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 2,
-  },
-  medium: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3.84,
-    elevation: 5,
-  },
-};
-
-export const typography = {
-  title: {
-    fontSize: 28,
-    fontWeight: "bold" as const,
-    color: colors.textPrimary,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: "600" as const,
-    color: colors.textPrimary,
-  },
-  body: {
-    fontSize: 16,
-    color: colors.textSecondary,
-  },
-  caption: {
-    fontSize: 14,
-    color: colors.textSecondary,
-  },
-  small: {
-    fontSize: 12,
-    color: colors.textSecondary,
-  },
-  statValue: {
-    fontSize: 24,
-    fontWeight: "bold" as const,
-    color: colors.primary,
-  },
-  statLabel: {
-    fontSize: 12,
-    color: colors.textSecondary,
-  },
-  pieDataName: {
-    fontSize: 16,
-    fontWeight: "500" as const,
-    color: colors.textPrimary,
-  },
-  pieDataValue: {
-    fontSize: 14,
-    color: colors.textSecondary,
-  },
-};
-
-export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.surface,
-    padding: spacing.lg,
-    paddingBottom: 100,
-  },
-  title: {
-    ...typography.title,
-    marginBottom: spacing.xl,
-    textAlign: "center",
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: spacing.lg,
-  },
-  loadingText: {
-    marginTop: spacing.sm,
-    ...typography.body,
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: spacing.lg,
-  },
-  errorText: {
-    ...typography.body,
-    color: colors.error,
-    textAlign: "center",
-    marginBottom: spacing.lg,
-  },
-  retryButton: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: spacing.xl,
-    paddingVertical: spacing.md,
-    borderRadius: borderRadius.md,
-  },
-  retryButtonText: {
-    ...typography.body,
-    color: colors.background,
-    fontWeight: "600",
-  },
-  sectionTitle: {
-    ...typography.subtitle,
-    marginBottom: spacing.lg,
-  },
-  statsContainer: {
-    backgroundColor: colors.background,
-    borderRadius: borderRadius.lg,
-    padding: spacing.lg,
-    marginBottom: spacing.lg,
-    ...shadows.medium,
-  },
-  statsGrid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-  statCard: {
-    width: "48%",
-    backgroundColor: colors.surface,
-    borderRadius: borderRadius.md,
-    padding: spacing.md,
-    marginBottom: spacing.sm,
-    alignItems: "center",
-  },
-  statValue: {
-    ...typography.statValue,
-    marginBottom: spacing.xs,
-  },
-  statLabel: {
-    ...typography.statLabel,
-    textAlign: "center",
-  },
-  chartContainer: {
-    backgroundColor: colors.background,
-    borderRadius: borderRadius.lg,
-    padding: spacing.lg,
-    marginBottom: spacing.lg,
-    ...shadows.medium,
-  },
-  pieChartWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    height: 220,
-  },
-  pieDataContainer: {
-    gap: spacing.md,
-    marginTop: spacing.lg,
-  },
-  pieDataItem: {
-    flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: spacing.sm,
-  },
-  colorIndicator: {
-    width: 16,
-    height: 16,
-    borderRadius: 8,
-    marginRight: spacing.md,
-  },
-  pieDataText: {
-    flex: 1,
-  },
-  pieDataName: {
-    ...typography.pieDataName,
-  },
-  pieDataValue: {
-    ...typography.pieDataValue,
-    marginTop: spacing.xs,
-  },
-  lineChartWrapper: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-    height: 220,
-  },
-  lineChart: {
-    paddingRight: spacing.sm,
-  },
-  lineChartScrollContainer: {
-    alignItems: "center",
-  },
-  bottomSpacer: {
-    height: 50,
-  },
-});

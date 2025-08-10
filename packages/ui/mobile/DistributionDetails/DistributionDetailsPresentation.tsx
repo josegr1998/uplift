@@ -8,7 +8,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DistributionDetailsPresentationProps } from "./DistributionDetails.types";
-import { styles, colors } from "./DistributionDetails.styles";
+import { createStyles } from "./DistributionDetails.styles";
+import { useTheme } from "../context/ThemeContext";
 
 export const DistributionDetailsPresentation = ({
   distribution,
@@ -16,11 +17,14 @@ export const DistributionDetailsPresentation = ({
   error,
   onBack,
 }: DistributionDetailsPresentationProps) => {
+  const theme = useTheme();
+  const styles = createStyles(theme);
+
   if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color={colors.primary} />
+          <ActivityIndicator size="large" color={theme.colors.primary} />
           <Text style={styles.loadingText}>
             Loading distribution details...
           </Text>

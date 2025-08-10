@@ -1,22 +1,31 @@
 import { isValidStatus } from "@uplift/ui/utils";
-import { colors } from "../DistributionTable/DistributionTablePresentation.styles";
+import { defaultTheme, Theme } from "../context/ThemeContext";
 
-export const getStatusColor = (status: string) => {
+export const getStatusColor = (status: string, theme: Theme = defaultTheme) => {
   if (!isValidStatus(status)) {
-    return { backgroundColor: colors.surface, color: colors.secondary };
+    return {
+      backgroundColor: theme.colors.surface,
+      color: theme.colors.secondary,
+    };
   }
 
   const statusColors = {
-    Planned: { backgroundColor: colors.infoBackground, color: colors.info },
+    Planned: {
+      backgroundColor: theme.colors.infoBackground,
+      color: theme.colors.accent,
+    },
     Completed: {
-      backgroundColor: colors.successBackground,
-      color: colors.success,
+      backgroundColor: theme.colors.successBackground,
+      color: theme.colors.success,
     },
     "In Progress": {
-      backgroundColor: colors.warningBackground,
-      color: colors.warning,
+      backgroundColor: theme.colors.warningBackground,
+      color: theme.colors.warning,
     },
-    Pending: { backgroundColor: colors.surface, color: colors.secondary },
+    Pending: {
+      backgroundColor: theme.colors.surface,
+      color: theme.colors.secondary,
+    },
   };
   return statusColors[status] || statusColors.Pending;
 };

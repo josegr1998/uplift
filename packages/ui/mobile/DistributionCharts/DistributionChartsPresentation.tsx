@@ -10,7 +10,11 @@ import {
 } from "react-native";
 import { ChartData } from "./DistributionCharts.types";
 import { PieChart, LineChart } from "react-native-chart-kit";
-import { styles, colors } from "./DistributionChartsPresentation.styles";
+import {
+  createStyles,
+  chartColors,
+} from "./DistributionChartsPresentation.styles";
+import { useTheme } from "../context/ThemeContext";
 
 export interface DistributionChartsPresentationProps {
   chartData: ChartData;
@@ -23,10 +27,13 @@ export const DistributionChartsPresentation = ({
   isLoading,
   error,
 }: DistributionChartsPresentationProps) => {
+  const theme = useTheme();
+  const styles = createStyles(theme);
+
   if (isLoading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#2196F3" />
+        <ActivityIndicator size="large" color={theme.colors.primary} />
         <Text style={styles.loadingText}>Loading charts...</Text>
       </View>
     );
@@ -54,8 +61,8 @@ export const DistributionChartsPresentation = ({
 
   const screenWidth = Dimensions.get("window").width;
   const chartConfig = {
-    backgroundGradientFrom: "#FFFFFF",
-    backgroundGradientTo: "#FFFFFF",
+    backgroundGradientFrom: theme.colors.background,
+    backgroundGradientTo: theme.colors.background,
     color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
     decimalPlaces: 0,
     style: {
@@ -70,7 +77,7 @@ export const DistributionChartsPresentation = ({
     propsForDots: {
       r: "4",
       strokeWidth: "2",
-      stroke: "#2196F3",
+      stroke: theme.colors.primary,
     },
   };
 
@@ -195,12 +202,12 @@ export const DistributionChartsPresentation = ({
 };
 
 const getColorForIndex = (index: number) => {
-  const chartColors = [
-    colors.chartBlue,
-    colors.chartGreen,
-    colors.chartYellow,
-    colors.chartOrange,
-    colors.chartPurple,
+  const chartColorsArray = [
+    chartColors.chartBlue,
+    chartColors.chartGreen,
+    chartColors.chartYellow,
+    chartColors.chartOrange,
+    chartColors.chartPurple,
   ];
-  return chartColors[index % chartColors.length];
+  return chartColorsArray[index % chartColorsArray.length];
 };

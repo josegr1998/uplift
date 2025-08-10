@@ -1,88 +1,135 @@
-# Mobile UI Package
+# Mobile UI Package - Theme System
 
-This package contains React Native components for the mobile app, now powered by TanStack Query for efficient data fetching and state management.
+This package provides a flexible theme system that allows mobile apps to customize the appearance of UI components while maintaining design consistency.
 
-## TanStack Query Implementation
+## How It Works
 
-### What Changed
+The theme system uses React Context to provide design tokens (colors, spacing, typography, etc.) to all components within the `ThemeProvider`. This allows each mobile app to have its own unique visual identity while using the same component logic.
 
-The mobile components have been refactored from manual state management to use TanStack Query:
+## Architecture
 
-**Before (Manual State Management):**
-
-```tsx
-const [distributions, setDistributions] = useState<Distribution[]>([]);
-const [isLoading, setIsLoading] = useState(true);
-const [error, setError] = useState<Error | null>(null);
-
-useEffect(() => {
-  const fetchDistributions = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
-      const data = await getDistributions();
-      setDistributions(data);
-    } catch (err) {
-      setError(
-        err instanceof Error ? err : new Error("Failed to fetch distributions")
-      );
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  fetchDistributions();
-}, []);
+```
+apps/mobile/app (Custom Theme)
+    ↓
+ThemeProvider (provides custom theme)
+    ↓
+packages/ui/mobile (components use theme)
+    ↓
+ThemeContext (consumes theme)
 ```
 
-**After (TanStack Query):**
+## Usage
 
-```tsx
-const { data: distributions = [], isLoading, error } = useDistributions();
-```
+### 1. Wrap Your App with ThemeProvider
 
-### Benefits
+```typescript
+import { ThemeProvider, defaultTheme, type Theme } from "@monorepo/ui/mobile";
 
-1. **Automatic Caching**: Data is automatically cached and shared between components
-2. **Background Updates**: Data stays fresh with automatic background refetching
-3. **Error Handling**: Built-in error handling and retry logic
-4. **Loading States**: Automatic loading state management
-5. **Optimistic Updates**: Support for optimistic UI updates
-6. **Request Deduplication**: Multiple components requesting the same data won't trigger duplicate API calls
-7. **Offline Support**: Built-in offline detection and handling
-8. **DevTools**: Excellent debugging experience with React Query DevTools
+// Create your custom theme
+const customTheme: Theme = {
+  ...defaultTheme,
+  colors: {
+    ...defaultTheme.colors,
+    primary: "#FF6B6B", // Your brand color
+    secondary: "#4ECDC4", // Your accent color
+    background: "#FAFAFA", // Your background
+  },
+  spacing: {
+    ...defaultTheme.spacing,
+    lg: 20, // Custom spacing
+  },
+};
 
-### Components Using TanStack Query
-
-- `DistributionTable` - Fetches and displays distribution list
-- `DistributionDetails` - Fetches individual distribution details
-
-### Setup
-
-The QueryClientProvider is set up in the mobile app's root layout (`apps/mobile/app/_layout.tsx`) to wrap the entire application.
-
-### Query Keys
-
-- `["distributions"]` - For the distributions list
-- `["distribution", id]` - For individual distribution details
-
-### Configuration
-
-The QueryClient is configured with:
-
-- `staleTime: 60 * 1000` (1 minute) - Data is considered fresh for 1 minute
-- `retry: 1` - Retry failed requests once
-
-## Usage Example
-
-```tsx
-import { useDistributions } from "@uplift/ui/mobile";
-
-function MyComponent() {
-  const { data, isLoading, error } = useDistributions();
-
-  if (isLoading) return <LoadingSpinner />;
-  if (error) return <ErrorMessage error={error} />;
-
-  return <DataDisplay data={data} />;
+// Wrap your app
+export default function App() {
+  return (
+    <ThemeProvider theme={customTheme}>
+      {/* All components will use your custom theme */}
+      <YourAppContent />
+    </ThemeProvider>
+  );
 }
 ```
+
+### 2. Components Automatically Use the Theme
+
+All components in this package automatically consume the theme from context:
+
+```typescript
+import { DistributionTablePresentation } from "@monorepo/ui/mobile";
+
+// No need to pass theme - it's automatically used from context
+<DistributionTablePresentation
+  distributions={distributions}
+  // ... other props
+/>;
+```
+
+### 3. Dynamic Theme Switching
+
+You can switch themes dynamically:
+
+```typescript
+import React, { useState } from "react";
+import { ThemeProvider, defaultTheme } from "@monorepo/ui/mobile";
+
+const lightTheme = defaultTheme;
+const darkTheme = {
+  ...defaultTheme,
+  colors: {
+    ...defaultTheme.colors,
+    background: "#1A1A1A",
+    textPrimary: "#FFFFFF",
+    // ... other dark theme colors
+  },
+};
+
+export const AppWithThemeSwitcher = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const currentTheme = isDarkMode ? darkTheme : lightTheme;
+
+  return (
+    <ThemeProvider theme={currentTheme}>
+      <YourAppContent />
+      <Button onPress={() => setIsDarkMode(!isDarkMode)}>Toggle Theme</Button>
+    </ThemeProvider>
+  );
+};
+```
+
+## Theme Structure
+
+The theme object contains:
+
+- **colors**: Primary, secondary, semantic colors, backgrounds, text colors
+- **spacing**: Consistent spacing scale (xs, sm, md, lg, xl, xxl)
+- **borderRadius**: Border radius values (sm, md, lg, xl)
+- **shadows**: Shadow configurations for elevation
+- **typography**: Font sizes, weights, and colors
+
+## Benefits
+
+✅ **App-Level Customization**: Each mobile app can have unique branding
+✅ **Consistent Design Language**: All components use the same design tokens
+✅ **Easy Theming**: Simple theme object for customization
+✅ **Type Safety**: Full TypeScript support for theme properties
+✅ **Performance**: Theme changes only re-render affected components
+✅ **Maintainable**: Central design system with local customization
+
+## Example Themes
+
+See `examples/AppThemeExample.tsx` for complete examples of:
+
+- Custom app themes
+- Dark mode themes
+- Dynamic theme switching
+
+## Migration from Hardcoded Styles
+
+If you're migrating from hardcoded styles:
+
+1. **Before**: Components imported design tokens directly
+2. **After**: Components use `useTheme()` hook to get current theme
+3. **Result**: Components automatically adapt to app's theme
+
+This system gives you the best of both worlds: centralized design consistency AND app-level customization flexibility.
