@@ -7,11 +7,11 @@ export {
 } from "./context/ThemeContext";
 
 // Components
-export { DistributionTable } from "./DistributionTable/DistributionTable";
-export { DistributionTablePresentation } from "./DistributionTable/DistributionTablePresentation";
-export { DistributionCharts } from "./DistributionCharts";
-export { DistributionDetailsContainer as DistributionDetails } from "./DistributionDetails";
-export { Button } from "./Button/Button";
+export { DistributionTable } from "./components/DistributionTable/DistributionTable";
+export { DistributionTablePresentation } from "./components/DistributionTable/DistributionTablePresentation";
+export { DistributionCharts } from "./components/DistributionCharts";
+export { DistributionDetailsContainer as DistributionDetails } from "./components/DistributionDetails";
+export { Button } from "./components/Button/Button";
 
 // Providers
 export { Provider as QueryClientProvider } from "./providers/QueryClientProvider";

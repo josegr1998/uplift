@@ -11,20 +11,16 @@ export const getStatusColor = (status: string, theme: Theme = defaultTheme) => {
 
   const statusColors = {
     Planned: {
-      backgroundColor: theme.colors.infoBackground,
-      color: theme.colors.accent,
+      color: theme.colors.primary,
     },
     Completed: {
-      backgroundColor: theme.colors.successBackground,
       color: theme.colors.success,
     },
     "In Progress": {
-      backgroundColor: theme.colors.warningBackground,
       color: theme.colors.warning,
     },
     Pending: {
-      backgroundColor: theme.colors.surface,
-      color: theme.colors.secondary,
+      color: theme.colors.neutral,
     },
   };
   return statusColors[status] || statusColors.Pending;
