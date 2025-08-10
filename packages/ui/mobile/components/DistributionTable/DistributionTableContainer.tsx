@@ -3,6 +3,7 @@ import { useRouter } from "expo-router";
 import { DistributionTablePresentation } from "./DistributionTablePresentation";
 import { useDistributions, useFilters } from "./DistributionTable.hooks";
 import { getUniqueRegions, getUniqueStatuses } from "@uplift/ui/utils";
+import { Distribution } from "@uplift/types";
 
 export const DistributionTableContainer = () => {
   const router = useRouter();
@@ -28,9 +29,8 @@ export const DistributionTableContainer = () => {
     return getUniqueStatuses(distributions);
   }, [distributions]);
 
-  const handleViewDetails = (distribution: any) => {
+  const handleViewDetails = (distribution: Distribution) =>
     router.push(`/distribution/${distribution.id}`);
-  };
 
   return (
     <DistributionTablePresentation

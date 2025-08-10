@@ -195,6 +195,101 @@ const MOCK_DISTRIBUTION_DETAILS = [
       },
     ],
   },
+  {
+    id: "dst--006",
+    region: "Coastal Area",
+    date: "2025-07-05",
+    status: "Planned",
+    beneficiaries: 1750,
+    aidType: "Food",
+    deliveryChannel: "Mobile Distribution",
+    beneficiaryList: [
+      {
+        id: "bnf--011",
+        name: "Robert Johnson",
+      },
+      {
+        id: "bnf--012",
+        name: "Lisa Anderson",
+      },
+    ],
+  },
+  {
+    id: "dst--007",
+    region: "Western Province",
+    date: "2025-07-10",
+    status: "In Progress",
+    beneficiaries: 2500,
+    aidType: "Medical",
+    deliveryChannel: "Direct Distribution",
+    beneficiaryList: [
+      {
+        id: "bnf--013",
+        name: "Thomas Garcia",
+      },
+      {
+        id: "bnf--014",
+        name: "Jennifer Martinez",
+      },
+    ],
+  },
+  {
+    id: "dst--008",
+    region: "Central Region",
+    date: "2025-07-15",
+    status: "Completed",
+    beneficiaries: 1100,
+    aidType: "Water",
+    deliveryChannel: "Vouchers",
+    beneficiaryList: [
+      {
+        id: "bnf--015",
+        name: "Christopher Lee",
+      },
+      {
+        id: "bnf--016",
+        name: "Amanda White",
+      },
+    ],
+  },
+  {
+    id: "dst--009",
+    region: "Eastern Province",
+    date: "2025-07-20",
+    status: "Pending",
+    beneficiaries: 3000,
+    aidType: "Shelter",
+    deliveryChannel: "Direct Distribution",
+    beneficiaryList: [
+      {
+        id: "bnf--017",
+        name: "Daniel Rodriguez",
+      },
+      {
+        id: "bnf--018",
+        name: "Michelle Thompson",
+      },
+    ],
+  },
+  {
+    id: "dst--010",
+    region: "Northern District",
+    date: "2025-07-25",
+    status: "Planned",
+    beneficiaries: 800,
+    aidType: "Education",
+    deliveryChannel: "Mobile Distribution",
+    beneficiaryList: [
+      {
+        id: "bnf--019",
+        name: "Kevin Lewis",
+      },
+      {
+        id: "bnf--020",
+        name: "Nicole Clark",
+      },
+    ],
+  },
 ];
 
 export const getDistributionDetails = async (

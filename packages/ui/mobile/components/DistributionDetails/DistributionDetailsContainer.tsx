@@ -9,6 +9,8 @@ export const DistributionDetailsContainer = () => {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
 
+  console.log("id", id);
+
   // Use React Query for data fetching
   const {
     data: distribution,
