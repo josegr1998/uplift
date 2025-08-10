@@ -3,15 +3,15 @@ import { View, Text, ActivityIndicator } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
 import { createStyles } from "./Loading.styles";
 
-export interface LoadingProps {
+export type Props = {
   message?: string;
   title?: string;
   size?: "small" | "large";
   containerStyle?: any;
   centered?: boolean;
-}
+};
 
-export const Loading: React.FC<LoadingProps> = ({
+export const Loading: React.FC<Props> = ({
   message = "Loading...",
   title,
   size = "large",

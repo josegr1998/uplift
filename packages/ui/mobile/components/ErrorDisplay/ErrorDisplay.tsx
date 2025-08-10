@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useTheme } from "../../context/ThemeContext";
 import { createStyles } from "./ErrorDisplay.styles";
 
-export interface ErrorDisplayProps {
+export type Props = {
   message: string;
   title?: string;
   retryText?: string;
@@ -11,9 +11,9 @@ export interface ErrorDisplayProps {
   showRetryButton?: boolean;
   containerStyle?: any;
   centered?: boolean;
-}
+};
 
-export const ErrorDisplay: React.FC<ErrorDisplayProps> = ({
+export const ErrorDisplay: React.FC<Props> = ({
   message,
   title = "Error",
   retryText = "Retry",

@@ -1,13 +1,13 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 
-interface ButtonProps {
+type Props = {
   title: string;
   onPress?: () => void;
   disabled?: boolean;
-}
+};
 
-export const Button = ({ title, onPress, disabled = false }: ButtonProps) => {
+export const Button = ({ title, onPress, disabled = false }: Props) => {
   return (
     <TouchableOpacity
       style={[styles.button, disabled && styles.disabled]}

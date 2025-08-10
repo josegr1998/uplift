@@ -51,14 +51,13 @@ export type ButtonRounded = NonNullable<
   VariantProps<typeof buttonVariants>["rounded"]
 >;
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-  loading?: boolean;
-  leftIcon?: React.ReactNode;
-  rightIcon?: React.ReactNode;
-}
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+    loading?: boolean;
+    leftIcon?: React.ReactNode;
+    rightIcon?: React.ReactNode;
+  };
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (

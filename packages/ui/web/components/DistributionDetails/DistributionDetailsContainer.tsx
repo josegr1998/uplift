@@ -5,13 +5,11 @@ import { getDistributionDetails } from "@uplift/network";
 import { DistributionDetailsPresentation } from "./DistributionDetailsPresentation";
 import { mapDistributionDetails } from "./DistributionDetails.mappers";
 
-interface DistributionDetailsContainerProps {
+type Props = {
   distributionId: string;
-}
+};
 
-export const DistributionDetailsContainer = ({
-  distributionId,
-}: DistributionDetailsContainerProps) => {
+export const DistributionDetailsContainer = ({ distributionId }: Props) => {
   const {
     data: distributionDetails,
     isLoading,

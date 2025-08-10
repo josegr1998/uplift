@@ -1,7 +1,6 @@
 import React, { createContext, useContext, ReactNode } from "react";
 
-// Theme interface that matches the design tokens
-export interface Theme {
+export type Theme = {
   colors: {
     primary: string;
     primaryDark: string;
@@ -103,7 +102,7 @@ export interface Theme {
       color: string;
     };
   };
-}
+};
 
 // Default theme (fallback)
 export const defaultTheme: Theme = {
@@ -188,9 +187,9 @@ export const defaultTheme: Theme = {
   },
 };
 
-interface ThemeContextType {
+type ThemeContextType = {
   theme: Theme;
-}
+};
 
 const ThemeContext = createContext<ThemeContextType>({ theme: defaultTheme });
 
@@ -202,10 +201,10 @@ export const useTheme = () => {
   return context.theme;
 };
 
-interface ThemeProviderProps {
+type ThemeProviderProps = {
   theme: Theme;
   children: ReactNode;
-}
+};
 
 export const ThemeProvider: React.FC<ThemeProviderProps> = ({
   theme,

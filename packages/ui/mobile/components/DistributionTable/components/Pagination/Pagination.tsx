@@ -3,13 +3,13 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { useTheme } from "../../../../context/ThemeContext";
 import { createStyles } from "./Pagination.styles";
 
-interface PaginationProps {
+type Props = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-}
+};
 
-export const Pagination: React.FC<PaginationProps> = ({
+export const Pagination: React.FC<Props> = ({
   currentPage,
   totalPages,
   onPageChange,

@@ -15,9 +15,9 @@ export type DistributionDetails = {
   beneficiaryList: Beneficiary[];
 };
 
-export interface DistributionDetailsPresentationProps {
+export type DistributionDetailsPresentationProps = {
   distribution: DistributionDetails | null;
   isLoading: boolean;
   error: string | null;
   onBack: () => void;
-}
+};

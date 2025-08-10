@@ -18,13 +18,12 @@ const loaderVariants = cva(
   }
 );
 
-export interface LoaderProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof loaderVariants> {
-  className?: string;
-}
+export type Props = React.HTMLAttributes<HTMLDivElement> &
+  VariantProps<typeof loaderVariants> & {
+    className?: string;
+  };
 
-export const Loader = React.forwardRef<HTMLDivElement, LoaderProps>(
+export const Loader = React.forwardRef<HTMLDivElement, Props>(
   ({ size, className }, ref) => {
     return (
       <div

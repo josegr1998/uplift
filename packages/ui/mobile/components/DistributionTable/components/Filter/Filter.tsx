@@ -3,15 +3,15 @@ import { View, Text, TouchableOpacity, Modal, FlatList } from "react-native";
 import { useTheme } from "../../../../context/ThemeContext";
 import { createStyles } from "./Filter.styles";
 
-interface FilterProps {
+type Props = {
   value: string;
   onChange: (name: string, value: string) => void;
   options: string[];
   placeholder: string;
   name: string;
-}
+};
 
-export const Filter: React.FC<FilterProps> = ({
+export const Filter: React.FC<Props> = ({
   value,
   onChange,
   options,

@@ -1,12 +1,12 @@
 import React from "react";
 import { cn } from "../../utils/cn";
 
-export interface ErrorProps {
+export type Props = {
   message?: string;
   className?: string;
-}
+};
 
-export const Error = React.forwardRef<HTMLDivElement, ErrorProps>(
+export const Error = React.forwardRef<HTMLDivElement, Props>(
   ({ message = "An error occurred", className }, ref) => {
     return (
       <div
