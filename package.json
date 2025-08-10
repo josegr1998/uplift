@@ -1,12 +1,17 @@
 {
-    "name": "monorepo",
-    "private": true,
-    "scripts": {
-  "dev:web": "yarn workspace web dev",
-  "dev:mobile": "yarn workspace mobile start"
-},
-    "workspaces": [
-      "apps/*",
-      "packages/*"
-    ]
-  }
+  "name": "monorepo",
+  "private": true,
+  "scripts": {
+    "dev:web": "yarn workspace web dev",
+    "dev:mobile": "yarn workspace mobile start", 
+    "test:web": "yarn workspace @uplift/ui test -- web/__tests__",
+    "test:mobile": "yarn workspace @uplift/ui test -- mobile/__tests__",
+    "test:ui": "yarn workspace @uplift/ui test",
+    "test:ui:watch": "yarn workspace @uplift/ui test:watch",
+    "test:ui:coverage": "yarn workspace @uplift/ui test:coverage"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

@@ -3,6 +3,11 @@
   "version": "1.0.0",
   "main": "web/index.ts",
   "types": "web/index.ts",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
   "exports": {
     ".": "./web/index.ts",
     "./web": "./web/index.ts",
@@ -25,9 +30,18 @@
     "react-native": "^0.72.0"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.6.4",
+    "@testing-library/react": "^16.3.0",
+    "@types/jest": "^30.0.0",
     "@types/react": "^19.1.9",
     "@types/react-native": "^0.72.0",
+    "jest": "^30.0.5",
+    "jest-environment-jsdom": "^30.0.5",
     "next": "^14.0.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "ts-jest": "^29.4.1",
     "typescript": "^5.0.0"
   }
 }
