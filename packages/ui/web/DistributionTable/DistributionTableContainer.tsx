@@ -33,6 +33,8 @@ export const DistributionTableContainer = () => {
     });
   }, [distributions, selectedFilters]);
 
+  const hasResults = filteredData.length > 0;
+
   const { table } = useTable({ filteredData });
 
   return (
@@ -44,6 +46,7 @@ export const DistributionTableContainer = () => {
       regions={regions}
       statuses={statuses}
       onFilterChange={handleFilterChange}
+      hasResults={hasResults}
     />
   );
 };

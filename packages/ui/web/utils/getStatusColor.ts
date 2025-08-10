@@ -2,14 +2,14 @@ import { isValidStatus } from "@uplift/ui/utils";
 
 export const getStatusColor = (status: string) => {
   if (!isValidStatus(status)) {
-    return "bg-gray-100 text-gray-800";
+    return "bg-[var(--neutral)]/10 text-[var(--neutral)]";
   }
 
   const STATUS_COLORS = {
-    Planned: "bg-blue-100 text-blue-800",
-    Completed: "bg-green-100 text-green-800",
-    "In Progress": "bg-yellow-100 text-yellow-800",
-    Pending: "bg-gray-100 text-gray-800",
+    Planned: "bg-[var(--primary)]/10 text-[var(--primary)]",
+    Completed: "bg-[var(--success)]/10 text-[var(--success)]",
+    "In Progress": "bg-[var(--warning)]/10 text-[var(--warning)]",
+    Pending: "bg-[var(--neutral)]/10 text-[var(--neutral)]",
   };
 
   return STATUS_COLORS[status];

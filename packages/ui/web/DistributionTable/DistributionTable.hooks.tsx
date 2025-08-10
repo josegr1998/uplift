@@ -15,6 +15,7 @@ import { useMemo, useState } from "react";
 import { ValidFilter, isValidFilter } from "@uplift/ui/utils";
 import { getStatusColor } from "../utils/getStatusColor";
 import { DEFAULT_PAGE_SIZE } from "./DistributionTable.consts";
+import Link from "next/link";
 
 export const useDistributions = () => {
   return useQuery({
@@ -70,12 +71,12 @@ export const useTable = ({
         cell: (actionsCell: CellContext<Distribution, unknown>) => {
           const distributionId = actionsCell.row.original.id;
           return (
-            <a
+            <Link
               href={`/distribution/${distributionId}`}
-              className="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors inline-block"
+              className="px-3 py-1 bg-[var(--primary)] text-white rounded hover:bg-[var(--primary-dark)] transition-colors inline-block"
             >
               View Details
-            </a>
+            </Link>
           );
         },
       }),

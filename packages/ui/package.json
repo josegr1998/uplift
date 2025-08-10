@@ -13,7 +13,10 @@
     "@tanstack/react-query": "^5.84.2",
     "@tanstack/react-table": "^8.21.3",
     "@uplift/network": "1.0.0",
-    "recharts": "^3.1.2"
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "recharts": "^3.1.2",
+    "tailwind-merge": "^3.3.1"
   },
   "peerDependencies": {
     "next": "^14.0.0",

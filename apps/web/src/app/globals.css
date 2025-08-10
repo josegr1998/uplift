@@ -2,20 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== THEME SYSTEM ===== */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  /* ===== COLOR PALETTE ===== */
+  /* Primary Colors */
+  --primary: #3b82f6;
+  --primary-dark: #1d4ed8;
+  
+  /* Secondary Colors */
+  --secondary: #8b5cf6;
+  --secondary-dark: #6d28d9;
+  
+  /* Neutral Colors */
+  --neutral: #737373;
+  --white: #ffffff;
+  --black: #171717;
+  
+  /* Semantic Colors */
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  
+  /* ===== ADDITIONAL COLORS FOR COMPONENTS ===== */
+  --background: var(--white);
+  --accent: #f1f5f9;
+  --accent-foreground: var(--black);
+  --ring: var(--primary);
+  --input: #e2e8f0;
+  
+  /* ===== FONT SIZE SCALE ===== */
+  --font-size-xs: 0.75rem;    /* 12px */
+  --font-size-sm: 0.875rem;   /* 14px */
+  --font-size-base: 1rem;     /* 16px */
+  --font-size-lg: 1.125rem;   /* 18px */
+  --font-size-xl: 1.25rem;    /* 20px */
+  --font-size-2xl: 1.5rem;    /* 24px */
+  --font-size-3xl: 1.875rem;  /* 30px */
+  --font-size-4xl: 2.25rem;   /* 36px */
+  --font-size-5xl: 3rem;      /* 48px */
+  --font-size-6xl: 3.75rem;   /* 60px */
 }
