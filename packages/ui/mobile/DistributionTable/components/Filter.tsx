@@ -10,9 +10,10 @@ import {
 
 interface FilterProps {
   value: string;
-  onChange: (value: string) => void;
+  onChange: (name: string, value: string) => void;
   options: string[];
   placeholder: string;
+  name: string;
 }
 
 export const Filter: React.FC<FilterProps> = ({
@@ -20,11 +21,12 @@ export const Filter: React.FC<FilterProps> = ({
   onChange,
   options,
   placeholder,
+  name,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleSelect = (option: string) => {
-    onChange(option === value ? "" : option);
+    onChange(name, option === value ? "" : option);
     setIsVisible(false);
   };
 
@@ -89,7 +91,7 @@ export const Filter: React.FC<FilterProps> = ({
             <TouchableOpacity
               style={styles.clearButton}
               onPress={() => {
-                onChange("");
+                onChange(name, "");
                 setIsVisible(false);
               }}
             >

@@ -3,7 +3,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { getDistributionDetails } from "@uplift/network";
 import { DistributionDetailsPresentation } from "./DistributionDetailsPresentation";
-import { mapDistributionToDistributionDetails } from "./DistributionDetails.mappers";
+import { mapDistributionDetails } from "./DistributionDetails.mappers";
 
 interface DistributionDetailsContainerProps {
   distributionId: string;
@@ -22,8 +22,7 @@ export const DistributionDetailsContainer = ({
     enabled: !!distributionId,
   });
 
-  const mappedDistributionDetails =
-    mapDistributionToDistributionDetails(distributionDetails);
+  const mappedDistributionDetails = mapDistributionDetails(distributionDetails);
 
   return (
     <DistributionDetailsPresentation

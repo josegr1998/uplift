@@ -3,15 +3,15 @@
 import { useMemo } from "react";
 import { DistributionTablePresentation } from "./DistributionTablePresentation";
 import {
-  filterDistributions,
-  getUniqueRegions,
-  getUniqueStatuses,
-} from "./DistributionTable.utils";
-import {
   useDistributions,
   useFilters,
   useTable,
 } from "./DistributionTable.hooks";
+import {
+  filterDistributions,
+  getUniqueRegions,
+  getUniqueStatuses,
+} from "@uplift/ui/utils";
 
 export const DistributionTableContainer = () => {
   const { data: distributions = [], isLoading, error } = useDistributions();

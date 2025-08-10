@@ -12,7 +12,7 @@ import {
 import { getDistributions } from "@uplift/network";
 import { Distribution } from "@uplift/types";
 import { useMemo, useState } from "react";
-import { isValidFilter, ValidFilter } from "./DistributionTable.utils";
+import { ValidFilter, isValidFilter } from "@uplift/ui/utils";
 import { getStatusColor } from "../utils/getStatusColor";
 import { DEFAULT_PAGE_SIZE } from "./DistributionTable.consts";
 

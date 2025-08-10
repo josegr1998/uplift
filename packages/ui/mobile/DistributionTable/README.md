@@ -1,10 +1,10 @@
-# Mobile Distribution List
+# Mobile Distribution Table
 
-A comprehensive React Native component for displaying and managing distribution lists with filtering, pagination, and navigation capabilities.
+A comprehensive React Native component for displaying and managing distribution tables with filtering, pagination, and navigation capabilities.
 
 ## Features
 
-- **Scrollable List**: Displays distributions in a clean card format
+- **Scrollable Table**: Displays distributions in a clean card format
 - **Filtering**: Filter by Region and Status with dropdown selectors
 - **Pagination**: Handles large datasets with page navigation
 - **Navigation**: Tap to view detailed distribution information
@@ -14,7 +14,7 @@ A comprehensive React Native component for displaying and managing distribution 
 
 ## Components
 
-### DistributionListContainer
+### DistributionTableContainer
 
 The main container component that handles:
 
@@ -23,7 +23,7 @@ The main container component that handles:
 - Navigation to detail screens
 - Error handling
 
-### DistributionListPresentation
+### DistributionTablePresentation
 
 The presentation component that handles:
 
@@ -50,12 +50,12 @@ A pagination component that provides:
 ## Usage
 
 ```tsx
-import { DistributionList } from "@uplift/ui/mobile";
+import { DistributionTable } from "@uplift/ui/mobile";
 
 export default function DistributionsScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <DistributionList />
+      <DistributionTable />
     </SafeAreaView>
   );
 }

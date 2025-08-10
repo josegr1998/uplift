@@ -1,7 +1,7 @@
 import { Table } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
 import { Distribution } from "@uplift/types";
-import { ValidFilter } from "./DistributionTable.utils";
+import { ValidFilter } from "@uplift/ui/utils";
 import { Filter } from "./components/Filter/Filter";
 
 // Presentation component - handles only UI rendering

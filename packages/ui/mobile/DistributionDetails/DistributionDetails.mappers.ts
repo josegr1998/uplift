@@ -1,9 +1,7 @@
-"use client";
-
-import { DistributionDetails as DistributionDetailServer } from "@uplift/types";
 import { DistributionDetails } from "./DistributionDetails.types";
-import { getStatusColor } from "../utils/getStatusColor";
 import { formatDate } from "@uplift/ui/utils";
+import { getStatusColor } from "../utils/getStatusColor";
+import { DistributionDetails as DistributionDetailServer } from "@uplift/types";
 
 export const mapDistributionDetails = (
   distribution: DistributionDetailServer | undefined
@@ -13,7 +11,7 @@ export const mapDistributionDetails = (
     region: distribution?.region || "",
     date: formatDate(distribution?.date || "") || "",
     status: distribution?.status || "",
-    statusColor: getStatusColor(distribution?.status || ""),
+    statusStyle: getStatusColor(distribution?.status || ""),
     beneficiaries: distribution?.beneficiaries || 0,
     aidType: distribution?.aidType || "",
     deliveryChannel: distribution?.deliveryChannel || "",

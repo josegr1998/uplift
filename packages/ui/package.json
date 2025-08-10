@@ -6,7 +6,8 @@
   "exports": {
     ".": "./web/index.ts",
     "./web": "./web/index.ts",
-    "./mobile": "./mobile/index.ts"
+    "./mobile": "./mobile/index.ts",
+    "./utils": "./utils/index.ts"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.84.2",

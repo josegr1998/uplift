@@ -1,14 +1,14 @@
 import React from "react";
 import { View, StyleSheet, StatusBar } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { DistributionTable } from "@uplift/ui/mobile";
+import { DistributionCharts } from "@uplift/ui/mobile";
 
-export default function DistributionsScreen() {
+export default function ChartsScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
       <View style={styles.content}>
-        <DistributionTable />
+        <DistributionCharts />
       </View>
     </SafeAreaView>
   );
