@@ -202,7 +202,8 @@ Instead of creating two separate endpoints, the solution uses two functions, sin
 
 <img width="1382" height="946" alt="image" src="https://github.com/user-attachments/assets/7b179cd6-4a80-44d3-8ef2-49d5f8178ade" />
 
-<img width="1067" height="733" alt="image" src="https://github.com/user-attachments/assets/0fe67cd7-dce3-4cdf-b571-9ab0234b7a19" />
+<img width="1099" height="731" alt="image" src="https://github.com/user-attachments/assets/ad159ccd-823e-4260-a344-7685a615a23c" />
+
 
 <img width="992" height="685" alt="image" src="https://github.com/user-attachments/assets/5aec4c3a-1a3d-405b-ad52-445acedfc561" />
 
