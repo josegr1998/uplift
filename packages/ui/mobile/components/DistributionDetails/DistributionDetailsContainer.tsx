@@ -14,6 +14,8 @@ export const DistributionDetailsContainer = () => {
     data: distribution,
     isLoading,
     error,
+    refetch,
+    isRefetching,
   } = useQuery({
     queryKey: ["distribution", id],
     queryFn: () => getDistributionDetails(id!),
@@ -24,6 +26,10 @@ export const DistributionDetailsContainer = () => {
     router.back();
   };
 
+  const handleRefresh = () => {
+    refetch();
+  };
+
   const mappedDistributionDetails = mapDistributionDetails(distribution);
 
   return (
@@ -32,6 +38,8 @@ export const DistributionDetailsContainer = () => {
       isLoading={isLoading}
       error={error?.message || null}
       onBack={handleBack}
+      onRefresh={handleRefresh}
+      isRefreshing={isRefetching}
     />
   );
 };

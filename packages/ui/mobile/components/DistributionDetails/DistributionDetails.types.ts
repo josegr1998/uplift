@@ -20,4 +20,6 @@ export type DistributionDetailsPresentationProps = {
   isLoading: boolean;
   error: string | null;
   onBack: () => void;
+  onRefresh: () => void;
+  isRefreshing: boolean;
 };

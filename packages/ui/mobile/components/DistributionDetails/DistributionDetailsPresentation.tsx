@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView } from "react-native";
+import { ScrollView, RefreshControl } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { DistributionDetailsPresentationProps } from "./DistributionDetails.types";
 import { createStyles } from "./DistributionDetails.styles";
@@ -15,6 +15,8 @@ export const DistributionDetailsPresentation = ({
   isLoading,
   error,
   onBack,
+  onRefresh,
+  isRefreshing,
 }: DistributionDetailsPresentationProps) => {
   const theme = useTheme();
   const styles = createStyles(theme);
@@ -38,7 +40,18 @@ export const DistributionDetailsPresentation = ({
     <SafeAreaView style={styles.container}>
       <DistributionHeader onBack={onBack} distribution={distribution} />
 
-      <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        style={styles.content}
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={isRefreshing}
+            onRefresh={onRefresh}
+            colors={[theme.colors.primary]}
+            tintColor={theme.colors.primary}
+          />
+        }
+      >
         <DistributionInfo distribution={distribution} />
 
         <BeneficiaryList distribution={distribution} />
