@@ -82,10 +82,17 @@ jest.mock("react-native", () => ({
     children,
     style,
     showsVerticalScrollIndicator,
+    refreshControl,
     ...props
   }: any) => (
     <div style={style} data-testid="scroll-view" {...props}>
+      {refreshControl}
       {children}
+    </div>
+  ),
+  RefreshControl: ({ refreshing, onRefresh, colors, tintColor }: any) => (
+    <div data-testid="refresh-control" onClick={onRefresh}>
+      {refreshing ? "Refreshing..." : "Pull to refresh"}
     </div>
   ),
 }));
@@ -139,6 +146,8 @@ describe("DistributionDetailsPresentation Component", () => {
     isLoading: false,
     error: null,
     onBack: jest.fn(),
+    onRefresh: jest.fn(),
+    isRefreshing: false,
   };
 
   it("shows loading state when isLoading is true", () => {
@@ -191,5 +200,35 @@ describe("DistributionDetailsPresentation Component", () => {
     expect(beneficiaryItems).toHaveLength(2);
     expect(beneficiaryItems[0]).toHaveTextContent("John Doe");
     expect(beneficiaryItems[1]).toHaveTextContent("Jane Smith");
+
+    // Check that refresh control is rendered
+    const refreshControl = screen.getByTestId("refresh-control");
+    expect(refreshControl).toBeInTheDocument();
+    expect(refreshControl).toHaveTextContent("Pull to refresh");
+  });
+
+  it("shows refreshing state when isRefreshing is true", () => {
+    render(
+      <DistributionDetailsPresentation {...defaultProps} isRefreshing={true} />
+    );
+
+    const refreshControl = screen.getByTestId("refresh-control");
+    expect(refreshControl).toBeInTheDocument();
+    expect(refreshControl).toHaveTextContent("Refreshing...");
+  });
+
+  it("calls onRefresh when refresh control is clicked", () => {
+    const mockOnRefresh = jest.fn();
+    render(
+      <DistributionDetailsPresentation
+        {...defaultProps}
+        onRefresh={mockOnRefresh}
+      />
+    );
+
+    const refreshControl = screen.getByTestId("refresh-control");
+    refreshControl.click();
+
+    expect(mockOnRefresh).toHaveBeenCalledTimes(1);
   });
 });
