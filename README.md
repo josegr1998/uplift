@@ -96,7 +96,7 @@ The web application uses CSS custom properties (CSS variables) defined in the gl
 - Color palette (primary, secondary, neutral, semantic colors)
 - Typograpgy settings
 
-### Mobile Theme (`packages/ui/mobile/context/ThemeContext.tsx`)
+### Mobile Theme (`packages/mobile/app/_layout.tsx`)
 
 The mobile application uses a React Context-based theme system with:
 
