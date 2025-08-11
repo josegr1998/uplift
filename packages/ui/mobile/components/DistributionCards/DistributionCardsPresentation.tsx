@@ -1,13 +1,14 @@
 import { View, Text, FlatList, TouchableOpacity, Alert } from "react-native";
 import { Distribution } from "@uplift/types";
 import { ValidFilter } from "@uplift/ui/utils";
-import { Filter } from "./components/Filter";
-import { createStyles } from "./DistributionTablePresentation.styles";
+
+import { createStyles } from "./DistributionCards.styles";
 import { useTheme } from "../../context/ThemeContext";
 import { Pagination } from "./components/Pagination/Pagination";
 import { DistributionCard } from "./components/DistributionCard/DistributionCard";
 import { ErrorDisplay } from "../ErrorDisplay/ErrorDisplay";
 import { Loading } from "../Loading/Loading";
+import { Filter } from "./components/Filter/Filter";
 
 type Props = {
   distributions: Distribution[];
@@ -26,7 +27,7 @@ type Props = {
   handleFilterToggle: () => void;
 };
 
-export const DistributionTablePresentation = ({
+export const DistributionCardsPresentation = ({
   distributions,
   isLoading,
   error,

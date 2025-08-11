@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
 import { useRouter } from "expo-router";
-import { DistributionTablePresentation } from "./DistributionTablePresentation";
-import { useDistributions, useFilters } from "./DistributionTable.hooks";
+import { DistributionCardsPresentation } from "./DistributionCardsPresentation";
+import { useDistributions, useFilters } from "./DistributionCards.hooks";
 import { getUniqueRegions, getUniqueStatuses } from "@uplift/ui/utils";
 import { Distribution } from "@uplift/types";
 
-export const DistributionTableContainer = () => {
+export const DistributionCardsContainer = () => {
   const router = useRouter();
   const { data: distributions = [], isLoading, error } = useDistributions();
 
@@ -33,7 +33,7 @@ export const DistributionTableContainer = () => {
     router.push(`/distribution/${distribution.id}`);
 
   return (
-    <DistributionTablePresentation
+    <DistributionCardsPresentation
       distributions={paginatedData}
       isLoading={isLoading}
       error={error as Error | null}

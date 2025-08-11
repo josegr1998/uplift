@@ -7,8 +7,8 @@ export {
 } from "./context/ThemeContext";
 
 // Components
-export { DistributionTable } from "./components/DistributionTable/DistributionTable";
-export { DistributionTablePresentation } from "./components/DistributionTable/DistributionTablePresentation";
+export { DistributionCards } from "./components/DistributionCards/DistributionCards";
+export { DistributionCardsPresentation } from "./components/DistributionCards/DistributionCardsPresentation";
 export { DistributionCharts } from "./components/DistributionCharts";
 export { DistributionDetailsContainer as DistributionDetails } from "./components/DistributionDetails";
 export { Button } from "./components/Button/Button";

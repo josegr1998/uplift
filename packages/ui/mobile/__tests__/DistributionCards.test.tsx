@@ -1,10 +1,10 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import { DistributionTablePresentation } from "../components/DistributionTable/DistributionTablePresentation";
+import { DistributionCardsPresentation } from "../components/DistributionCards/DistributionCardsPresentation";
 import { Distribution } from "@uplift/types";
 
 // Mock the child components
-jest.mock("../components/DistributionTable/components/Filter/Filter", () => ({
+jest.mock("../components/DistributionCards/components/Filter/Filter", () => ({
   Filter: ({ name, value, onChange, options, placeholder }: any) => (
     <select
       data-testid={`filter-${name}`}
@@ -22,7 +22,7 @@ jest.mock("../components/DistributionTable/components/Filter/Filter", () => ({
 }));
 
 jest.mock(
-  "../components/DistributionTable/components/DistributionCard/DistributionCard",
+  "../components/DistributionCards/components/DistributionCard/DistributionCard",
   () => ({
     DistributionCard: ({ distribution }: any) => (
       <div data-testid="distribution-card">
@@ -33,7 +33,7 @@ jest.mock(
 );
 
 jest.mock(
-  "../components/DistributionTable/components/Pagination/Pagination",
+  "../components/DistributionCards/components/Pagination/Pagination",
   () => ({
     Pagination: ({ currentPage, totalPages, onPageChange }: any) => (
       <div data-testid="pagination">
@@ -110,24 +110,22 @@ jest.mock("react-native", () => ({
 }));
 
 // Mock the styles
-jest.mock(
-  "../components/DistributionTable/DistributionTablePresentation.styles",
-  () => ({
-    createStyles: () => ({
-      container: { padding: 16 },
-      title: { fontSize: 24, fontWeight: "bold" },
-      filterToggleButton: { padding: 12, backgroundColor: "#007AFF" },
-      filterToggleText: { color: "#FFFFFF" },
-      filterToggleIcon: { color: "#FFFFFF" },
-      filtersContainer: { padding: 16 },
-      filterRow: { marginBottom: 12 },
-      filterLabel: { fontSize: 16, fontWeight: "600" },
-      resultsText: { fontSize: 14, color: "#666" },
-      list: { flex: 1 },
-      bottomSpacer: { height: 100 },
-    }),
-  })
-);
+jest.mock("../components/DistributionCards/DistributionCards.styles", () => ({
+  createStyles: () => ({
+    container: {},
+    title: {},
+    filtersContainer: {},
+    filterRow: {},
+    filterLabel: {},
+    resultsText: {},
+    list: {},
+    listContent: {},
+    bottomSpacer: {},
+    filterToggleButton: {},
+    filterToggleText: {},
+    filterToggleIcon: {},
+  }),
+}));
 
 // Mock the theme context
 jest.mock("../context/ThemeContext", () => ({
@@ -137,7 +135,7 @@ jest.mock("../context/ThemeContext", () => ({
   }),
 }));
 
-describe("DistributionTablePresentation Component", () => {
+describe("DistributionCardsPresentation Component", () => {
   const defaultProps = {
     distributions: [
       {
@@ -178,7 +176,7 @@ describe("DistributionTablePresentation Component", () => {
 
   it("shows loading state when isLoading is true", () => {
     render(
-      <DistributionTablePresentation {...defaultProps} isLoading={true} />
+      <DistributionCardsPresentation {...defaultProps} isLoading={true} />
     );
 
     const loading = screen.getByTestId("loading");
@@ -190,7 +188,7 @@ describe("DistributionTablePresentation Component", () => {
   it("shows error state when error occurs", () => {
     const errorMessage = "Failed to load distributions";
     render(
-      <DistributionTablePresentation
+      <DistributionCardsPresentation
         {...defaultProps}
         error={{ message: errorMessage } as Error}
       />
@@ -203,7 +201,7 @@ describe("DistributionTablePresentation Component", () => {
 
   it("renders distribution list and filters when data is available", () => {
     render(
-      <DistributionTablePresentation
+      <DistributionCardsPresentation
         {...defaultProps}
         areFiltersVisible={true}
       />
@@ -239,7 +237,7 @@ describe("DistributionTablePresentation Component", () => {
   it("shows correct filter toggle button text based on filter visibility", () => {
     // Test when filters are hidden
     const { rerender } = render(
-      <DistributionTablePresentation
+      <DistributionCardsPresentation
         {...defaultProps}
         areFiltersVisible={false}
       />
@@ -248,7 +246,7 @@ describe("DistributionTablePresentation Component", () => {
 
     // Test when filters are visible
     rerender(
-      <DistributionTablePresentation
+      <DistributionCardsPresentation
         {...defaultProps}
         areFiltersVisible={true}
       />
