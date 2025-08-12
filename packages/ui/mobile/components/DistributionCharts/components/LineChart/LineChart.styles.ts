@@ -26,9 +26,6 @@ export const createStyles = (theme: Theme) =>
       width: "100%",
       height: 220,
     },
-    lineChart: {
-      paddingRight: 8,
-    },
     lineChartScrollContainer: {
       alignItems: "center",
     },

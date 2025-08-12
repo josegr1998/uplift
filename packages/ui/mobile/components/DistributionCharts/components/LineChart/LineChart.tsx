@@ -27,11 +27,10 @@ export const LineChart = ({
         <View style={styles.lineChartWrapper}>
           <RNChart
             data={lineChartData}
-            width={Math.max(screenWidth - 32, 400)}
+            width={Math.max(screenWidth)}
             height={220}
             chartConfig={chartConfig}
             bezier
-            style={styles.lineChart}
           />
         </View>
       </ScrollView>
